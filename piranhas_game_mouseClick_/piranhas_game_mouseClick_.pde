@@ -1,6 +1,7 @@
 int nMover = 200; //creates integer number so we can use it in place of # of objects
 Mover[] m = new Mover[nMover]; //variable = an area of variables, 10 slots
 boolean clicked = false;
+int living = nMover;
 
 void setup()
 {
@@ -15,6 +16,12 @@ void setup()
 
 }
 
+void hud()
+{
+ fill(color(255));
+ text(living,100,100);
+}
+
 void draw()
 {
   noStroke();
@@ -27,6 +34,7 @@ void draw()
   m[i].display();  //activates display
   }
   drawMe();
+  hud();
 }
 
 void drawMe()
@@ -40,6 +48,6 @@ void mousePressed()
 {
   for(int i = 0; i < m.length; i = i + 1) //nMover can also be replaced with m.length
   {
-    m[i].bite(mouseX,mouseY);
+    m[i].bite();
   }
 }
