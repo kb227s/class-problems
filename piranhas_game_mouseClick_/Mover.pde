@@ -68,7 +68,7 @@ class Mover //to define mover
   
   void display()
   {
-    fill(200,245,255);
+    fill(200,245,255); //color if die
     if(live)
     {
     //colorMode(HSB,width,100,10); //makes it rainbow

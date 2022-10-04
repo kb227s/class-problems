@@ -18,9 +18,22 @@ void setup()
 
 void hud()
 {
- fill(color(255));
- text(living,550,100);
- textSize(50);
+  fill(color(100,100,250,9));
+  rect(558,25,85,45);
+  translate(width/2,10);
+  fill(color(255));
+  textAlign(CENTER);
+  text(living,0,50);
+  textSize(40);
+
+  
+  translate(-nMover,0);
+  fill(color(255,0,100));
+  rect(0,0,living*2,15);
+  noFill();
+  stroke(color(255));
+  rect(0,0,nMover*2,15);
+  
 }
 
 void draw()
