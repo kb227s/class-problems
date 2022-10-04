@@ -7,6 +7,7 @@ class Mover //to define mover
  float max_speed = random(1,5); //creates randomized speed
  float max_acc = random(0.1,0.5);
  boolean live = true;
+ float dist = 0; //distance from mouse
 
   Mover()
   {
@@ -20,9 +21,9 @@ class Mover //to define mover
      {
       PVector mouse = new PVector(mouseX,mouseY);
       PVector dir = PVector.sub(mouse,location);
-      float dist = dir.mag(); //#length of distance from mouse
+      this.dist = dir.mag(); //#length of distance from mouse
       
-      dir.normalize();
+      dir.normalize(); //kength doesn't matter, only direction
       dir.mult(max_acc);  //limit of acceleration
       location.add(velocity);
       velocity.limit(max_speed); //limits maximum speed
@@ -33,7 +34,7 @@ class Mover //to define mover
       if(dist < 300) // if dist is 300
       {  //lerp = linear interpolation
         acceleration1 = acceleration2.lerp(acceleration1,3.0-(dist/300.0));  //2 only chases if really near to 300
-        acceleration1.mult(-1.0);
+        acceleration1.mult(-1.0); //rotating the vector
         velocity.add(acceleration1);  //object accelerates toward mouse
       }
       else
@@ -43,12 +44,16 @@ class Mover //to define mover
     }
   }
   
-  void bite(int x, int y)
+  void bite()
   {
-     PVector mouse = new PVector(x,y);
-     PVector dir = PVector.sub(mouse,location);
-     float dist = dir.mag();
-     if(dist < 30) this.live = false;
+    if(live)
+    {
+     if(this.dist < 30) 
+     {
+       this.live = false; //if dist of mouse to cell is less than 30, when mouse clicks the cell dies
+       living = living - 1;
+     }
+    }
   }
   void check()
   {
@@ -66,7 +71,8 @@ class Mover //to define mover
     fill(200,245,255);
     if(live)
     {
-    fill(0,100,200);
+    //colorMode(HSB,width,100,10); //makes it rainbow
+    fill(dist,100,200);
     }
     noStroke();
     circle(location.x,location.y,15);

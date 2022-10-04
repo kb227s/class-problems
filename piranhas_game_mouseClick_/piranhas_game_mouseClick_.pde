@@ -19,7 +19,8 @@ void setup()
 void hud()
 {
  fill(color(255));
- text(living,100,100);
+ text(living,550,100);
+ textSize(50);
 }
 
 void draw()
